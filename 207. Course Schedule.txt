@@ -1,0 +1,43 @@
+class Solution {
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        
+        Map<Integer, ArrayList<Integer>> graph=new HashMap<>();
+        int []inDegree=new int[numCourses];
+        
+        for(int []pr : prerequisites)
+        {
+            int pre=pr[0];
+            int curr=pr[1];
+            
+            ArrayList<Integer> nextCourses=graph.getOrDefault(pre, new ArrayList<>());
+            nextCourses.add(curr);
+            graph.put(pre, nextCourses);
+            inDegree[curr]++;
+            
+        }
+        
+        Queue<Integer> toDo= new LinkedList<>();
+        
+        int count=0;
+        
+        for(int i=0;i<numCourses;i++)
+            if(inDegree[i]==0)
+                toDo.offer(i);
+        
+        while(!toDo.isEmpty())
+        {
+            int curr=toDo.remove();
+            count++;
+            
+            for(int next: graph.getOrDefault(curr, new ArrayList<>()))
+            {
+                inDegree[next]--;
+                if(inDegree[next]==0)
+                    toDo.offer(next);
+            }
+        }
+        
+        return count==numCourses;
+        
+    }  
+}
