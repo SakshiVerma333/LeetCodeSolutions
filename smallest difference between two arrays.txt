@@ -1,0 +1,32 @@
+import java.util.Arrays;
+import java.util.ArrayList;
+
+public class Main
+{
+	public static void main(String[] args) {
+		int [] arr1= {-1,5,10,20,28,3};
+		int [] arr2= {26,134,135,15,17};
+		System.out.println(smallestDifference(arr1,arr2));
+	}
+	
+	static int smallestDifference(int [] arr1, int [] arr2)
+	{
+	    Arrays.sort(arr1);
+	    Arrays.sort(arr2);
+	    int i=0, j=0;
+	    int minDiff =Integer.MAX_VALUE;
+	    
+	    while(i<arr1.length && j < arr2.length)
+	    {
+	        minDiff=Math.min(minDiff, Math.abs(arr1[i]-arr2[j]));
+	        
+	        if(arr1[i] < arr2[j])
+	        i++;
+	        else
+	        j++;
+	        
+	    }
+	    
+    	    return minDiff;
+	}
+}
