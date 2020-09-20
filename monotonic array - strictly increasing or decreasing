@@ -1,0 +1,32 @@
+public class Main
+{
+	public static void main(String[] args) {
+	    
+	    int arr[] = {-6, -6};
+	    int n = arr.length;
+	    
+	    System.out.println(isMonotonic(arr, n));
+	
+	}
+	
+	static boolean isMonotonic( int []arr, int n)
+	{
+	    if(n <= 2)
+	    return true;
+	    
+	    boolean isNonInc = true;
+		boolean isNonDec = true;
+		
+		for(int i=1;i<n;i++)
+		{
+		    if(arr[i]>arr[i-1])
+		    isNonDec = false;
+		    if(arr[i-1]>arr[i])
+		    isNonInc = false;
+		    
+		    
+		}
+	    
+	    return isNonInc || isNonDec;
+	}
+}
