@@ -1,0 +1,60 @@
+public class Main
+{
+	public static void main(String[] args) {
+	    
+	    int arr[] = {1, 2, 3, 4, 10, 11, 12, 12, 15, 16, 17, 18, 19};
+	    int n = arr.length;
+	    subArraySort(arr, n);
+	
+	}
+	
+	static void subArraySort( int []arr, int n)
+	{
+	    int minOutOfOrder = Integer.MAX_VALUE;
+	    int maxOutOfOrder = Integer.MIN_VALUE;
+	    
+	    for(int i=0;i<n;i++)
+	    {
+	        int num = arr[i];
+	       
+	        if(isOutOfOrder(arr,num, i))
+	        {
+	            minOutOfOrder = Math.min(minOutOfOrder, num);
+	            maxOutOfOrder = Math.max(maxOutOfOrder, num);
+	            
+	        }
+	   
+	        
+	    }
+	    
+	    if(minOutOfOrder == Integer.MAX_VALUE)
+	    {System.out.println(-1+""+-1);
+	    return;
+	    }
+	    
+	    int subArrayLeft = 0;
+	      while(minOutOfOrder >= arr[subArrayLeft])
+	    {
+	        subArrayLeft++;
+	    }
+	    
+	    int subArrayRight = n - 1;
+	    while(maxOutOfOrder <= arr[subArrayRight])
+	    {
+	        subArrayRight--;
+	    }
+	    
+	    System.out.println(subArrayLeft+""+subArrayRight);
+	    
+	}
+	
+	static boolean isOutOfOrder(int[]arr, int num, int i)
+	{
+	    if(i==0)
+	    return num > arr[i+1];
+	    if(i==arr.length-1)
+	    return num < arr[i-1];
+	    
+	    return  num > arr[i+1] || num < arr[i-1];
+	}
+}
