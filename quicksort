@@ -1,0 +1,52 @@
+public class MyClass {
+    public static void main(String args[]) {
+     int [] arr = {10, 7, 8, 9, 1, 5};
+     quickSort(arr, 0, arr.length-1);
+     for(int i=0; i < arr.length;i++)
+     System.out.print(arr[i]+ " ");
+    }
+    
+    
+  public static void quickSort(int []arr, int low, int high)
+  {
+      if(low<high)
+      {
+      int partition = partition(arr, low, high);
+      
+      quickSort(arr, low, partition-1);
+      quickSort(arr, partition+1, high);
+      }
+      
+      
+      
+  }
+  
+  // sort elements so that elements before pivot are smaller and after are greater
+  public static int partition(int []arr, int low, int high)
+  {
+      int i=low-1;
+      int j=low;
+      int pivot = arr[high];
+      
+      for(j=low;j<high;j++)
+      {
+          if(arr[j]<pivot)
+          {
+              i++;
+              swap(arr, j ,i);
+              
+          }
+          
+      }
+      swap(arr, i+1, high);
+      return i+1;
+  }
+  
+  public static void swap(int []arr, int x, int y)
+  {
+     // System.out.println(x+" "+y);
+      int temp = arr[x];
+      arr[x] = arr[y];
+      arr[y] = temp;
+  }
+}
